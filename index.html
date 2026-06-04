@@ -141,7 +141,7 @@ border-top:1px solid rgba(255,255,255,0.1);
 color:#94a3b8;
 }
 
-/* 🔥 LOGIN BLUR PROFISSIONAL */
+/* 🔐 LOGIN PREMIUM */
 #login{
 position:fixed;
 inset:0;
@@ -186,6 +186,65 @@ transition:.3s;
 
 .login-box button:hover{
 transform:scale(1.05);
+}
+
+/* 💎 CONTACT GLASS */
+.contact-glass{
+padding:100px 10%;
+text-align:center;
+}
+
+.contact-glass h2{
+font-size:2.5rem;
+margin-bottom:40px;
+}
+
+.contact-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.contact-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+
+padding:16px 28px;
+border-radius:16px;
+
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(20px);
+
+color:white;
+text-decoration:none;
+font-weight:600;
+min-width:180px;
+transition:0.3s;
+}
+
+.contact-btn img{
+width:22px;
+filter:brightness(0);
+}
+
+.contact-btn:hover{
+transform:translateY(-5px);
+background:rgba(255,255,255,0.1);
+box-shadow:0 0 30px rgba(255,255,255,0.15);
+}
+
+.contact-btn.whatsapp:hover{
+border-color:#25D366;
+box-shadow:0 0 25px rgba(37,211,102,0.25);
+}
+
+.contact-btn.gmail:hover{
+border-color:#ff4b4b;
+box-shadow:0 0 25px rgba(255,75,75,0.25);
 }
 
 </style>
@@ -239,11 +298,30 @@ transform:scale(1.05);
 <div class="stat"><h3>100%</h3><p>Responsivo</p></div>
 </section>
 
+<!-- 💎 CONTATO APPLE GLASS -->
+<section class="contact-glass" id="contato">
+<h2>Contato</h2>
+
+<div class="contact-buttons">
+
+<a class="contact-btn whatsapp" href="https://wa.me/5549998095175" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/220/220236.png">
+WhatsApp
+</a>
+
+<a class="contact-btn gmail" href="mailto:bmaxsitesoficial@gmail.com">
+<img src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png">
+Gmail
+</a>
+
+</div>
+</section>
+
 <footer>
 © 2026 B-Max Sites
 </footer>
 
-<!-- 🔥 FIREBASE (GOOGLE LOGIN) -->
+<!-- 🔥 FIREBASE LOGIN -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } 
@@ -263,18 +341,14 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 window.loginGoogle = async () => {
-  try {
-    await signInWithPopup(auth, provider);
-  } catch (e) {
-    alert(e.message);
-  }
+  await signInWithPopup(auth, provider);
 };
 
 onAuthStateChanged(auth, (user) => {
   if(user){
     document.getElementById("login").style.display = "none";
     document.body.style.overflow = "auto";
-  } else {
+  }else{
     document.getElementById("login").style.display = "flex";
     document.body.style.overflow = "hidden";
   }

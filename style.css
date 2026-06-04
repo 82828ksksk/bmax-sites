@@ -21,18 +21,16 @@ html, body{
 body{
     font-family:'Poppins',sans-serif;
     color:white;
-
     min-height:100vh;
     overflow-x:hidden;
 
-    /* FUNDO ESTÁVEL E PROFISSIONAL */
     background:
     radial-gradient(circle at top left, #0066ff45, transparent 45%),
     radial-gradient(circle at bottom right, #00aaff25, transparent 50%),
     radial-gradient(circle at center, #0b1b3a, #050816);
 }
 
-/* GARANTE CAMADAS CORRETAS */
+/* CAMADAS */
 section, nav, footer{
     position:relative;
     z-index:2;
@@ -51,7 +49,7 @@ section, nav, footer{
 
     padding:20px 8%;
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(18px);
     background:rgba(5,8,22,0.75);
     border-bottom:1px solid var(--border);
 }
@@ -88,12 +86,7 @@ section, nav, footer{
     align-items:center;
     justify-content:center;
     text-align:center;
-
     padding:120px 20px;
-}
-
-.hero-content{
-    max-width:900px;
 }
 
 .hero h1{
@@ -130,7 +123,6 @@ section, nav, footer{
     transition:.3s;
 }
 
-/* PRIMARY */
 .btn-primary{
     background:linear-gradient(135deg,#0066ff,#3399ff);
     color:white;
@@ -142,7 +134,6 @@ section, nav, footer{
     box-shadow:0 0 45px rgba(0,102,255,.6);
 }
 
-/* SECONDARY */
 .btn-secondary{
     border:1px solid var(--border);
     background:var(--glass);
@@ -200,10 +191,6 @@ section, nav, footer{
     color:var(--primary-light);
 }
 
-.card p{
-    text-align:left;
-}
-
 /* STATS */
 .stats{
     display:flex;
@@ -241,28 +228,119 @@ footer{
     opacity:0.7;
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar{
-    width:10px;
+/* 🔐 LOGIN PREMIUM GLASS */
+#login{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(25px);
+    z-index:99999;
 }
 
-::-webkit-scrollbar-thumb{
-    background:var(--primary);
-    border-radius:20px;
+.login-box{
+    background:rgba(0,0,0,0.92);
+    padding:45px;
+    border-radius:18px;
+    text-align:center;
+    width:340px;
+
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 0 50px rgba(0,102,255,0.25);
+
+    animation:fadeIn .5s ease;
 }
 
-::-webkit-scrollbar-track{
-    background:#050816;
+@keyframes fadeIn{
+    from{transform:scale(0.9); opacity:0;}
+    to{transform:scale(1); opacity:1;}
 }
 
-/* RESPONSIVO */
-@media(max-width:900px){
+.login-box h2{
+    margin-bottom:10px;
+}
 
-.hero h1{
+.login-box p{
+    color:#94a3b8;
+    margin-bottom:20px;
+}
+
+.login-box button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#fff;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-box button:hover{
+    transform:scale(1.05);
+}
+
+/* 💎 CONTACT GLASS (APPLE STYLE) */
+.contact-glass{
+    padding:100px 10%;
+    text-align:center;
+}
+
+.contact-glass h2{
     font-size:2.5rem;
+    margin-bottom:40px;
 }
 
-.menu{
-    display:none;
+.contact-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
 }
+
+.contact-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    padding:16px 28px;
+    border-radius:16px;
+
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(20px);
+
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+
+    min-width:180px;
+    transition:.3s;
+}
+
+.contact-btn img{
+    width:22px;
+    filter:brightness(0);
+}
+
+.contact-btn:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.1);
+    box-shadow:0 0 30px rgba(255,255,255,0.15);
+}
+
+.contact-btn.whatsapp:hover{
+    border-color:#25D366;
+    box-shadow:0 0 25px rgba(37,211,102,0.25);
+}
+
+.contact-btn.gmail:hover{
+    border-color:#ff4b4b;
+    box-shadow:0 0 25px rgba(255,75,75,0.25);
 }

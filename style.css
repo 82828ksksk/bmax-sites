@@ -25,15 +25,9 @@ body{
     overflow-x:hidden;
 
     background:
-    radial-gradient(circle at top left, #0066ff45, transparent 45%),
+    radial-gradient(circle at top left, #0066ff40, transparent 45%),
     radial-gradient(circle at bottom right, #00aaff25, transparent 50%),
-    radial-gradient(circle at center, #0b1b3a, #050816);
-}
-
-/* CAMADAS */
-section, nav, footer{
-    position:relative;
-    z-index:2;
+    radial-gradient(circle at center, #050816, #02030a);
 }
 
 /* NAVBAR */
@@ -89,62 +83,6 @@ section, nav, footer{
     padding:120px 20px;
 }
 
-.hero h1{
-    font-size:4rem;
-    line-height:1.1;
-    margin-bottom:25px;
-
-    background:linear-gradient(90deg,#fff,#7cc0ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.hero p{
-    font-size:1.2rem;
-    color:var(--text);
-    opacity:0.85;
-    margin-bottom:40px;
-}
-
-/* BOTÕES */
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.btn-primary,
-.btn-secondary{
-    padding:15px 35px;
-    border-radius:12px;
-    text-decoration:none;
-    font-weight:600;
-    transition:.3s;
-}
-
-.btn-primary{
-    background:linear-gradient(135deg,#0066ff,#3399ff);
-    color:white;
-    box-shadow:0 0 30px rgba(0,102,255,.4);
-}
-
-.btn-primary:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 45px rgba(0,102,255,.6);
-}
-
-.btn-secondary{
-    border:1px solid var(--border);
-    background:var(--glass);
-    color:white;
-    backdrop-filter:blur(10px);
-}
-
-.btn-secondary:hover{
-    transform:translateY(-4px);
-}
-
 /* SECTIONS */
 .section{
     padding:100px 10%;
@@ -186,11 +124,6 @@ section, nav, footer{
     box-shadow:0 0 35px rgba(0,102,255,.25);
 }
 
-.card h3{
-    margin-bottom:15px;
-    color:var(--primary-light);
-}
-
 /* STATS */
 .stats{
     display:flex;
@@ -228,15 +161,14 @@ footer{
     opacity:0.7;
 }
 
-/* 🔐 LOGIN PREMIUM GLASS */
+/* 🔐 LOGIN (BRANCO GARANTIDO SEM BUG) */
 #login{
     position:fixed;
     inset:0;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    background:rgba(0,0,0,0.6);
+    background:rgba(0,0,0,0.65);
     backdrop-filter:blur(25px);
     z-index:99999;
 }
@@ -247,52 +179,45 @@ footer{
     border-radius:18px;
     text-align:center;
     width:340px;
-
     border:1px solid rgba(255,255,255,0.15);
-    box-shadow:0 0 50px rgba(0,102,255,0.25);
-
-    animation:fadeIn .5s ease;
+    box-shadow:0 0 55px rgba(0,102,255,0.25);
 }
 
-@keyframes fadeIn{
-    from{transform:scale(0.9); opacity:0;}
-    to{transform:scale(1); opacity:1;}
-}
-
-.login-box h2{
-    margin-bottom:10px;
-}
-
-.login-box p{
-    color:#94a3b8;
-    margin-bottom:20px;
-}
-
+/* BOTÃO GOOGLE */
 .login-box button{
-    width:100%;
+    width:100% !important;
     padding:12px;
     border:none;
-    border-radius:10px;
-    background:#fff;
-    color:#000;
-    font-weight:bold;
+    border-radius:12px;
+
+    background:#ffffff !important;
+    color:#000000 !important;
+
+    font-weight:800;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
     cursor:pointer;
-    transition:.3s;
+    transition:.25s;
+}
+
+.login-box button img{
+    width:20px;
+    height:20px;
 }
 
 .login-box button:hover{
     transform:scale(1.05);
+    box-shadow:0 0 25px rgba(255,255,255,0.35);
 }
 
-/* 💎 CONTACT GLASS (APPLE STYLE) */
+/* CONTACT */
 .contact-glass{
     padding:100px 10%;
     text-align:center;
-}
-
-.contact-glass h2{
-    font-size:2.5rem;
-    margin-bottom:40px;
 }
 
 .contact-buttons{
@@ -326,21 +251,22 @@ footer{
 
 .contact-btn img{
     width:22px;
-    filter:brightness(0);
+    height:22px;
+    object-fit:contain;
 }
 
-.contact-btn:hover{
-    transform:translateY(-5px);
-    background:rgba(255,255,255,0.1);
-    box-shadow:0 0 30px rgba(255,255,255,0.15);
-}
-
+/* WhatsApp hover verde */
 .contact-btn.whatsapp:hover{
     border-color:#25D366;
     box-shadow:0 0 25px rgba(37,211,102,0.25);
+    background:rgba(37,211,102,0.08);
 }
 
 .contact-btn.gmail:hover{
     border-color:#ff4b4b;
     box-shadow:0 0 25px rgba(255,75,75,0.25);
 }
+
+.contact-btn:hover{
+    transform:translateY(-5px);
+    }

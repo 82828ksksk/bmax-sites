@@ -141,14 +141,14 @@ border-top:1px solid rgba(255,255,255,0.1);
 color:#94a3b8;
 }
 
-/* 🔐 LOGIN PREMIUM */
+/* 🔐 LOGIN */
 #login{
 position:fixed;
 inset:0;
 display:flex;
 align-items:center;
 justify-content:center;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.65);
 backdrop-filter:blur(25px);
 z-index:9999;
 }
@@ -160,7 +160,8 @@ border-radius:18px;
 text-align:center;
 width:320px;
 border:1px solid rgba(255,255,255,0.15);
-box-shadow:0 0 40px rgba(0,102,255,0.3);
+box-shadow:0 0 40px rgba(0,102,255,0.25);
+animation:pulse 2.5s infinite;
 }
 
 .login-box h2{
@@ -172,79 +173,65 @@ color:#94a3b8;
 margin-bottom:20px;
 }
 
+/* BOTÃO GOOGLE PREMIUM */
 .login-box button{
 width:100%;
 padding:12px;
 border:none;
-border-radius:10px;
-background:#fff;
-color:#000;
-font-weight:bold;
+border-radius:12px;
+background:#ffffff;
+color:#000000;
+font-weight:800;
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+
 cursor:pointer;
-transition:.3s;
+transition:.25s;
+}
+
+.login-box button img{
+width:20px;
+height:20px;
 }
 
 .login-box button:hover{
 transform:scale(1.05);
+box-shadow:0 0 25px rgba(255,255,255,0.3);
 }
 
-/* 💎 CONTACT GLASS */
-.contact-glass{
-padding:100px 10%;
-text-align:center;
+/* PULSE ANIMATION */
+@keyframes pulse{
+0%{ box-shadow:0 0 25px rgba(0,102,255,0.15); }
+50%{ box-shadow:0 0 45px rgba(0,102,255,0.35); }
+100%{ box-shadow:0 0 25px rgba(0,102,255,0.15); }
 }
 
-.contact-glass h2{
-font-size:2.5rem;
-margin-bottom:40px;
-}
-
-.contact-buttons{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.contact-btn{
-display:flex;
+/* LOADER */
+#loader{
+position:fixed;
+inset:0;
+display:none;
 align-items:center;
 justify-content:center;
-gap:12px;
-
-padding:16px 28px;
-border-radius:16px;
-
-background:rgba(255,255,255,0.06);
-border:1px solid rgba(255,255,255,0.15);
+background:rgba(0,0,0,0.7);
 backdrop-filter:blur(20px);
-
-color:white;
-text-decoration:none;
-font-weight:600;
-min-width:180px;
-transition:0.3s;
+z-index:10000;
 }
 
-.contact-btn img{
-width:22px;
-filter:brightness(0);
+.spinner{
+width:55px;
+height:55px;
+border:5px solid rgba(255,255,255,0.2);
+border-top:5px solid #00aaff;
+border-radius:50%;
+animation:spin 1s linear infinite;
 }
 
-.contact-btn:hover{
-transform:translateY(-5px);
-background:rgba(255,255,255,0.1);
-box-shadow:0 0 30px rgba(255,255,255,0.15);
-}
-
-.contact-btn.whatsapp:hover{
-border-color:#25D366;
-box-shadow:0 0 25px rgba(37,211,102,0.25);
-}
-
-.contact-btn.gmail:hover{
-border-color:#ff4b4b;
-box-shadow:0 0 25px rgba(255,75,75,0.25);
+@keyframes spin{
+to{ transform:rotate(360deg); }
 }
 
 </style>
@@ -254,9 +241,20 @@ box-shadow:0 0 25px rgba(255,75,75,0.25);
 
 <!-- 🔐 LOGIN -->
 <div id="login">
-  <div class="login-box" 
-    <button onclick="loginGoogle()">Entrar com Google</button>
+  <div class="login-box">
+    <h2>Login</h2>
+    <p>Entre para continuar</p>
+
+    <button onclick="loginGoogle()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+      Entrar com Google
+    </button>
   </div>
+</div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="spinner"></div>
 </div>
 
 <!-- SITE -->
@@ -296,30 +294,20 @@ box-shadow:0 0 25px rgba(255,75,75,0.25);
 <div class="stat"><h3>100%</h3><p>Responsivo</p></div>
 </section>
 
-<!-- 💎 CONTATO APPLE GLASS -->
-<section class="contact-glass" id="contato">
+<section class="section" id="contato">
 <h2>Contato</h2>
 
-<div class="contact-buttons">
+<a href="https://wa.me/5549998095175" target="_blank">WhatsApp</a>
+<br><br>
+<a href="mailto:bmaxsitesoficial@gmail.com">Gmail</a>
 
-<a class="contact-btn whatsapp" href="https://wa.me/5549998095175" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/220/220236.png">
-WhatsApp
-</a>
-
-<a class="contact-btn gmail" href="mailto:bmaxsitesoficial@gmail.com">
-<img src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png">
-Gmail
-</a>
-
-</div>
 </section>
 
 <footer>
-© 2026 B-Max Sites | @alesandro_hzn
+© 2026 B-Max Sites
 </footer>
 
-<!-- 🔥 FIREBASE LOGIN -->
+<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } 
@@ -338,16 +326,27 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+const loginBox = document.getElementById("login");
+const loader = document.getElementById("loader");
+
 window.loginGoogle = async () => {
-  await signInWithPopup(auth, provider);
+  loader.style.display = "flex";
+
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (e) {
+    console.error(e);
+  }
+
+  loader.style.display = "none";
 };
 
 onAuthStateChanged(auth, (user) => {
   if(user){
-    document.getElementById("login").style.display = "none";
+    loginBox.style.display = "none";
     document.body.style.overflow = "auto";
-  }else{
-    document.getElementById("login").style.display = "flex";
+  } else {
+    loginBox.style.display = "flex";
     document.body.style.overflow = "hidden";
   }
 });

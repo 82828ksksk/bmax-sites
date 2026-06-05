@@ -215,7 +215,7 @@ font-weight:600;
 
 transition:0.3s ease;
 
-/* flutuação */
+/* efeito flutuante */
 animation:float 3s ease-in-out infinite;
 }
 
@@ -231,7 +231,7 @@ height:24px;
 object-fit:contain;
 }
 
-/* hover mais forte */
+/* hover forte estilo “pressão” */
 .contact-btn:hover{
 transform:translateY(-10px);
 box-shadow:0 15px 30px rgba(0,0,0,0.4);
